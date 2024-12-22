@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba2hbn5aiqv6w"]
+
+[ext_resource type="Script" path="res://scripts/file.gd" id="1_2wjqt"]
+[ext_resource type="Script" path="res://scripts/interface.gd" id="1_mry0h"]
+[ext_resource type="Script" path="res://scripts/new_file_window.gd" id="2_o5p6j"]
+
+[node name="Interface" type="CanvasLayer"]
+script = ExtResource("1_mry0h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+color = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="MenuBar" type="MenuBar" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+flat = true
+
+[node name="File" type="PopupMenu" parent="ColorRect/MenuBar"]
+auto_translate_mode = 1
+title = "File"
+item_count = 1
+item_0/text = "New"
+script = ExtResource("1_2wjqt")
+
+[node name="NewFileWindow" type="Window" parent="ColorRect/MenuBar"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "New"
+initial_position = 1
+size = Vector2i(250, 150)
+visible = false
+transient = true
+exclusive = true
+popup_window = true
+force_native = true
+min_size = Vector2i(250, 150)
+script = ExtResource("2_o5p6j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MenuBar/NewFileWindow"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer"]
+layout_mode = 2
+text = "Frame size in pixels:"
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Width:"
+
+[node name="Width" type="SpinBox" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 16384.0
+value = 400.0
+alignment = 2
+
+[node name="Label2" type="Label" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "pixels"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Height:"
+
+[node name="Height" type="SpinBox" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 16384.0
+value = 300.0
+alignment = 2
+
+[node name="Label2" type="Label" parent="ColorRect/MenuBar/NewFileWindow/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "pixels"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MenuBar/NewFileWindow"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="OK" type="Button" parent="ColorRect/MenuBar/NewFileWindow/HBoxContainer"]
+layout_mode = 2
+text = "OK
+"
+
+[node name="Cancel" type="Button" parent="ColorRect/MenuBar/NewFileWindow/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="id_pressed" from="ColorRect/MenuBar/File" to="ColorRect/MenuBar/File" method="_on_id_pressed"]
+[connection signal="close_requested" from="ColorRect/MenuBar/NewFileWindow" to="ColorRect/MenuBar/NewFileWindow" method="_on_close_requested"]
+[connection signal="resolution_chosen" from="ColorRect/MenuBar/NewFileWindow" to="." method="_on_resolution_chosen"]
+[connection signal="pressed" from="ColorRect/MenuBar/NewFileWindow/HBoxContainer/OK" to="ColorRect/MenuBar/NewFileWindow" method="_on_ok_pressed"]
+[connection signal="pressed" from="ColorRect/MenuBar/NewFileWindow/HBoxContainer/Cancel" to="ColorRect/MenuBar/NewFileWindow" method="_on_cancel_pressed"]
