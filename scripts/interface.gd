@@ -10,4 +10,4 @@ func _ready() -> void:
 	
 	for window: Window in %SubWindows.get_children():
 		window.position += base_position
-		window.show()
+		#window.show()

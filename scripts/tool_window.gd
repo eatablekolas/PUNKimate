@@ -8,7 +8,7 @@ func _on_close_requested() -> void:
 
 func _process(delta: float) -> void:
 	var game_window_size: Vector2 = self.owner.get_viewport().get_visible_rect().size
-	print(game_window_size, "\t", position)
+	#print(game_window_size, "\t", position)
 	
 	if position.x < min_x:
 		position.x = min_x
