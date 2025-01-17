@@ -80,49 +80,6 @@ func plot_line(pos1: Vector2i, pos2: Vector2i) -> void:
 			plot_line_high(pos2, pos1)
 		else:
 			plot_line_high(pos1, pos2)
-	
-	#if pos1.x > pos2.x:
-		#var pom: Vector2i = pos1
-		#pos1 = pos2
-		#pos2 = pom
-	#
-	#var diff_x: int = abs(pos1.x - pos2.x)
-	#var diff_y: int = abs(pos1.y - pos2.y)
-	#var increment: int = 1 if pos2.y - pos1.y > 0 else -1
-	#
-	#if diff_x < diff_y and pos1.x < pos2.x and pos1.y > pos2.y:
-		#var pom: Vector2i = pos1
-		#pos1 = pos2
-		#pos2 = pom
-	#
-	#if diff_x > diff_y:
-		#var A: int = 2 * diff_y
-		#var B: int = A - 2 * diff_x
-		#var P: int = A - diff_x
-		#var y: int = pos1.y
-		#
-		#for x in range(pos1.x + 1, pos2.x + 1):
-			#if P < 0:
-				#draw_pixel(Vector2i(x, y))
-				#P += A
-			#else:
-				#y += increment
-				#draw_pixel(Vector2i(x, y))
-				#P += B
-	#else:
-		#var A: int = 2 * diff_x
-		#var B: int = A - 2 * diff_y
-		#var P: int = A - diff_y
-		#var x: int = pos1.x
-		#
-		#for y in range(pos1.y + 1, pos2.y + 1):
-			#if P < 0:
-				#draw_pixel(Vector2i(x, y))
-				#P += A
-			#else:
-				#x += increment
-				#draw_pixel(Vector2i(x, y))
-				#P += B
 
 func _ready() -> void:
 	image.fill(Color.WHITE)
@@ -147,7 +104,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion and pressed:
 		var pos: Vector2i = mouse_to_point(event.position)
 		
-		draw_pixel(pos)
 		plot_line(last_pos, pos)
 		image_texture.update(image)
 		
