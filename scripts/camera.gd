@@ -1,6 +1,6 @@
 extends Camera2D
 
-const ZOOM_INCREMENT: float = 0.05
+const ZOOM_INCREMENT: float = 0.125
 const ZOOM_MIN: float = 0.25
 const ZOOM_MAX: float = 10.0
 
