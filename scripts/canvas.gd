@@ -1,27 +1,35 @@
 extends Sprite2D
+class_name Canvas
 
-const SIZE_X: int = 400
-const SIZE_Y: int = 400
+#const SIZE_X: int = 400
+#const SIZE_Y: int = 400
 const ERROR_VECTOR: Vector2i = Vector2i(-1, -1)
 
-@onready var image: Image = Image.create_empty(SIZE_X, SIZE_Y, false, Image.FORMAT_RGBA8)
+var size: Vector2i = Vector2i(400, 400)
+var pressed: bool = false
+var last_pos: Vector2i = Vector2.ZERO
+
+@onready var image: Image = Image.create_empty(size.x, size.y, false, Image.FORMAT_RGBA8)
 @onready var image_texture: ImageTexture = ImageTexture.create_from_image(image)
 
 @export var camera: Camera2D
 
-var pressed: bool = false
-var last_pos: Vector2i = Vector2.ZERO
+func make_new(x: int, y: int) -> void:
+	size = Vector2i(x, y)
+	image.crop(x, y)
+	image.fill(Color.WHITE)
+	image_texture.set_image(image)
 
 func mouse_to_point(mouse_position: Vector2) -> Vector2i:
 	var window_size = DisplayServer.window_get_size()
 	
-	var x: int = (mouse_position.x - window_size.x / 2) / camera.zoom.x + camera.position.x + SIZE_X / 2
-	var y: int = (mouse_position.y - window_size.y / 2) / camera.zoom.y + camera.position.y + SIZE_Y / 2
+	var x: int = (mouse_position.x - window_size.x / 2) / camera.zoom.x + camera.position.x + size.x / 2
+	var y: int = (mouse_position.y - window_size.y / 2) / camera.zoom.y + camera.position.y + size.y / 2
 	
 	return Vector2i(x, y)
 
 func is_point_valid(point: Vector2i) -> bool:
-	return (point.x >= 0 and point.x < SIZE_X and point.y >= 0 and point.y < SIZE_Y)
+	return (point.x >= 0 and point.x < size.x and point.y >= 0 and point.y < size.y)
 
 func draw_pixel(pos: Vector2i) -> void:
 	if not is_point_valid(pos):

@@ -13,6 +13,7 @@ unique_name_in_owner = true
 script = ExtResource("2_i56kx")
 
 [node name="Canvas" type="Sprite2D" parent="." node_paths=PackedStringArray("camera")]
+unique_name_in_owner = true
 script = ExtResource("3_0mjs1")
 camera = NodePath("../Camera")
 
