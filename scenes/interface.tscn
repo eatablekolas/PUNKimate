@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba2hbn5aiqv6w"]
+[gd_scene load_steps=9 format=3 uid="uid://ba2hbn5aiqv6w"]
 
 [ext_resource type="Script" path="res://scripts/file.gd" id="1_2wjqt"]
 [ext_resource type="Script" path="res://scripts/interface.gd" id="1_mry0h"]
 [ext_resource type="Script" path="res://scripts/new_file_window.gd" id="2_o5p6j"]
 [ext_resource type="Script" path="res://scripts/tool_window.gd" id="4_1p8sq"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_wxnug"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_v6d0o"]
+events = [SubResource("InputEventKey_wxnug")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k33fd"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_to1p3"]
+events = [SubResource("InputEventKey_k33fd")]
 
 [node name="Interface" type="CanvasLayer"]
 script = ExtResource("1_mry0h")
@@ -61,7 +75,6 @@ initial_position = 1
 size = Vector2i(250, 150)
 visible = false
 transient = true
-force_native = true
 min_size = Vector2i(250, 150)
 script = ExtResource("2_o5p6j")
 
@@ -131,11 +144,13 @@ alignment = 2
 
 [node name="OK" type="Button" parent="ColorRect/MenuBar/NewFileWindow/HBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_v6d0o")
 text = "OK
 "
 
 [node name="Cancel" type="Button" parent="ColorRect/MenuBar/NewFileWindow/HBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_to1p3")
 text = "Cancel"
 
 [connection signal="close_requested" from="SubWindows/ToolWindow" to="SubWindows/ToolWindow" method="_on_close_requested"]

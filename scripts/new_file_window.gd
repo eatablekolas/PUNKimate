@@ -1,6 +1,15 @@
 extends Window
+class_name NewFileWindow
 
 signal resolution_chosen(width: int, height: int)
+
+func activate() -> void:
+	self.show()
+	%Width.grab_focus()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("new_file"):
+		activate()
 
 func _on_close_requested() -> void:
 	self.hide()

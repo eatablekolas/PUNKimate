@@ -5,4 +5,4 @@ func _on_id_pressed(id: int) -> void:
 	
 	match id:
 		0:
-			%NewFileWindow.show()
+			%NewFileWindow.activate()

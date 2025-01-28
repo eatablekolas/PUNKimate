@@ -1,8 +1,6 @@
 extends Sprite2D
 class_name Canvas
 
-#const SIZE_X: int = 400
-#const SIZE_Y: int = 400
 const ERROR_VECTOR: Vector2i = Vector2i(-1, -1)
 
 var size: Vector2i = Vector2i(400, 400)
