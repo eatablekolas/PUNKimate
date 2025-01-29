@@ -43,6 +43,10 @@ eraser={
 ]
 }
 
+[input_devices]
+
+pen_tablet/driver.windows="winink"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
