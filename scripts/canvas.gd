@@ -33,7 +33,7 @@ func draw_pixel(pos: Vector2i) -> void:
 	if not is_point_valid(pos):
 		return
 	
-	image.set_pixelv(pos, Color.BLACK)
+	image.set_pixelv(pos, Settings.CURRENT_COLOR)
 
 func plot_line_low(pos1: Vector2i, pos2: Vector2i) -> void:
 	var dx: int = pos2.x - pos1.x

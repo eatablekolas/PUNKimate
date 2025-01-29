@@ -34,7 +34,6 @@ offset_bottom = 40.0
 [node name="ToolWindow" type="Window" parent="SubWindows"]
 position = Vector2i(20, 80)
 transient = true
-exclusive = true
 unresizable = true
 always_on_top = true
 script = ExtResource("4_1p8sq")
